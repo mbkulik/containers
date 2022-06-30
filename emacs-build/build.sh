@@ -3,10 +3,10 @@
 set -euf -o pipefail
 
 #clone repo
-git clone https://github.com/A6GibKm/emacs-pgtk-nativecomp-copr.git
+git clone https://github.com/mbkulik/emacs-pgtk-nativecomp.git
 
 #change to repo
-cd /root/emacs-pgtk-nativecomp-copr/
+cd /root/emacs-pgtk-nativecomp/
 
 #downloads src
 spectool -g --source 0  --directory /root/rpmbuild/SOURCES emacs.spec
