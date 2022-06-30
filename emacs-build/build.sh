@@ -1,12 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-set -euf -o pipefail
+set -eu -o pipefail
+shopt -s failglob
 
 #clone repo
 git clone https://github.com/mbkulik/emacs-pgtk-nativecomp.git
 
 #change to repo
-cd /root/emacs-pgtk-nativecomp/
+pushd /root/emacs-pgtk-nativecomp > /dev/null
 
 #downloads src
 spectool -g --source 0  --directory /root/rpmbuild/SOURCES emacs.spec
@@ -16,3 +17,5 @@ cp {*.el,*.patch,*.desktop,*.sh,*.xml,*.service,*.gpg} /root/rpmbuild/SOURCES/
 
 #build packages
 rpmbuild -ba emacs.spec
+
+popd > /dev/null
