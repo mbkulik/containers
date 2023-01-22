@@ -1,0 +1,13 @@
+
+fedpkg clone --anonymous pixman
+curl -L https://gitlab.freedesktop.org/pixman/pixman/-/commit/eadb82866b0f6a326a61c36f60e5c2be8f7479af.patch -o aarch64-fix.patch
+
+** update spec file
+
+- update build number
+- add in Patch
+  add -Da64-neon=enabled
+
+fedpkg srpm
+
+rpmbuild --rebuild XXX.srpm
