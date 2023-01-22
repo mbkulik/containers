@@ -1,0 +1,9 @@
+FROM fedora:37
+RUN dnf update -y --refresh
+RUN dnf install -y pandoc texlive-scheme-medium 'tex(wrapfig.sty)' 'tex(capt-of.sty)' \
+'tex(beamerthememetropolis.sty)'
+
+WORKDIR /docs
+ENV LANG C.UTF-8
+
+ENTRYPOINT ["pdflatex"]
