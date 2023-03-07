@@ -1,0 +1,29 @@
+FROM almalinux:9
+
+RUN dnf install -y epel-release
+RUN dnf update -y --refresh
+RUN dnf config-manager --set-enabled crb
+
+WORKDIR /root
+
+#required packages from devel repo
+
+RUN curl -O -L https://repo.almalinux.org/almalinux/9/devel/x86_64/os/Packages/libotf-devel-0.9.13-20.el9.x86_64.rpm
+RUN curl -O -L https://repo.almalinux.org/almalinux/9/devel/x86_64/os/Packages/m17n-lib-devel-1.8.0-13.el9.x86_64.rpm
+RUN curl -O -L https://repo.almalinux.org/almalinux/9/devel/x86_64/os/Packages/m17n-lib-tools-1.8.0-13.el9.x86_64.rpm
+RUN curl -O -L https://repo.almalinux.org/almalinux/9/devel/x86_64/os/Packages/m17n-db-devel-1.8.0-16.el9.noarch.rpm
+RUN curl -O -L https://repo.almalinux.org/almalinux/9/devel/x86_64/os/Packages/m17n-db-extras-1.8.0-16.el9.noarch.rpm
+
+RUN dnf install -y ./*.rpm
+
+RUN dnf install -y dnf-plugins-core git rpm-build rpmdevtools libgccjit-devel lcms2-devel \
+libtree-sitter-devel
+
+RUN dnf builddep -y emacs
+
+RUN rpmdev-setuptree
+RUN echo -e "\n%debug_package %{nil}" >> ~/.rpmmacros
+
+COPY build.sh /root
+
+ENTRYPOINT /bin/bash
