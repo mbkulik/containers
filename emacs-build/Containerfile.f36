@@ -1,0 +1,12 @@
+FROM fedora:36
+RUN dnf update -y --refresh
+RUN dnf install -y dnf-plugins-core git rpm-build rpmdevtools libgccjit-devel lcms2-devel \
+libtree-sitter-devel
+RUN dnf builddep -y emacs
+
+WORKDIR /root
+RUN rpmdev-setuptree
+RUN echo -e "\n%debug_package %{nil}" >> ~/.rpmmacros
+COPY build.sh /root
+
+ENTRYPOINT /bin/bash
