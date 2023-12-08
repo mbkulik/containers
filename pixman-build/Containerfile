@@ -1,9 +1,0 @@
-FROM fedora:36
-RUN dnf update -y --refresh
-RUN dnf install -y fedpkg cmake
-RUN dnf builddep -y pixman
-
-WORKDIR /root
-RUN rpmdev-setuptree
-
-ENTRYPOINT /bin/bash
