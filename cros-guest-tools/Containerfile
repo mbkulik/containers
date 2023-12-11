@@ -1,0 +1,9 @@
+FROM fedora:39
+RUN dnf update -y --refresh
+RUN dnf install -y dnf-plugins-core git rpm-build rpmdevtools
+
+RUN echo -e "\n%debug_package %{nil}" >> ~/.rpmmacros
+RUN rpmdev-setuptree
+
+COPY entry.sh /root
+ENTRYPOINT ["/bin/bash", "/root/entry.sh"]
