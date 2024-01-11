@@ -1,0 +1,6 @@
+FROM fedora:39
+RUN dnf update -y --refresh
+RUN dnf install -y git gcc make openssl-devel bison flex wget xz bc
+
+COPY entry.sh /root
+ENTRYPOINT ["/bin/bash", "/root/entry.sh"]
