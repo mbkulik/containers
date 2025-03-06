@@ -1,8 +1,9 @@
 
-.phony: alma9-container
+.phony: container
 
-alma9-container:
-	podman build -t alma9-zfs-kmod-builder . --no-cache
+container:
+	podman build -t zfs-kmod-builder -f Containerfile --no-cache
 
-alma9-rpm:
-	podman run --rm -i -v ${PWD}:/work:Z alma9-zfs-kmod-builder
+rpm:
+
+	podman run --rm -i -v ${PWD}:/work:Z zfs-kmod-builder
