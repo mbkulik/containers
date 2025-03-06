@@ -1,4 +1,4 @@
-FROM fedora:37
+FROM fedora:41
 RUN dnf update -y --refresh
 RUN dnf install -y pandoc texlive-scheme-medium 'tex(wrapfig.sty)' 'tex(capt-of.sty)' \
 'tex(beamerthememetropolis.sty)' 'tex(lastpage.sty)' 'tex(turnthepage.sty)'
