@@ -12,4 +12,4 @@ cd zfs-${ZFS_VERSION}
 
 ./configure
 
-make -j1 rpm-utils rpm-kmod
+make -j8 rpm-utils rpm-kmod
