@@ -1,4 +1,4 @@
-FROM almalinux:latest
+FROM almalinux:9
 
 RUN dnf update -y --refresh
 
