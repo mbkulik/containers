@@ -1,5 +1,5 @@
 
-ZFS_VERSION=2.4.2
+ZFS_VERSION=2.4.3
 
 rm -f ${ZFS_VERSION}.tar.gz
 rm -rf zfs-${ZFS_VERSION}
